@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from 'axios'
 import Pagination from "react-js-pagination";
 
 import './UserList.css';
@@ -12,25 +12,21 @@ function UserList(){
     const [ totalPage, setTotalPage] = useState(0);
     const [ perPage, setPerPage] = useState(0);
 
-    const handleLoadUserList = () => {
-        axios(`https://reqres.in/api/users?page=${currentPage}`, {})
-        .then(res => {
-            setUserList(res.data.data);
-            setTotalPage(res.data.total);
-            setPerPage(res.data.per_page);
-        })
-        .catch(err => {
-            alert('Something went wrong with apis');
-        })
-    }
-
     useEffect(() => {
+        const handleLoadUserList = () => {
+            axios(`https://reqres.in/api/users?page=${currentPage}`, {})
+            .then(res => {
+                setUserList(res.data.data);
+                setTotalPage(res.data.total);
+                setPerPage(res.data.per_page);
+            })
+            .catch(err => {
+                alert('Something went wrong with apis');
+            })
+        }
         handleLoadUserList();
     }, [currentPage]);
 
-    useEffect(() => {
-        handleLoadUserList();
-    }, [])
     return (
         <div>
             <h2>User List</h2>
@@ -48,7 +44,7 @@ function UserList(){
                     {UserList.map((user, index) => (
                         <tr key={index}>
                             <td>{index+1}</td>
-                            <td><img src={user.avatar} style={{height: '50px', width: '50px'}} alt='no image'/></td>
+                            <td><img src={user.avatar} style={{height: '50px', width: '50px'}} alt="" /></td>
                             <td>{user.first_name}</td>
                             <td>{user.last_name}</td>
                             <td>{user.email}</td>
