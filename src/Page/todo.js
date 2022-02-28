@@ -63,15 +63,15 @@ function TODO(){
             <h2>TODO LIST</h2>
             <h3>Add Item</h3>
             <p>
-                <input placeholder='todo name' value={currentValue} onChange={e => setCurrentValue(e.target.value)} type="text"/><button onClick={handleAddTODOList}>Add</button>
+                <input placeholder='todo name' value={currentValue} onChange={e => setCurrentValue(e.target.value)} type="text"/><button className="btn btn-primary ml-2" onClick={handleAddTODOList}>Add</button>
             </p>
             <h3>Todo List</h3>
-            <ul id="tasks">
+            <ul>
                 {list.map((data, index) => (
-                    <li key={index}>
+                    <li key={index} className="mt-3 mb-3">
                         <input type="text" value={data.value} disabled/>
-                        <button className="edit" onClick={e => handleEdit(data.index )}>Edit</button>
-                        <button className="delete" onClick={e => handleDelete(data.index)}>Delete</button>
+                        <button type="button" className="btn btn-primary mr-2 ml-2" onClick={e => handleEdit(data.index )}>Edit</button>
+                        <button type="button" className="btn btn-danger mr-2 ml-2" onClick={e => handleDelete(data.index)}>Delete</button>
                     </li>
                 ))}
             </ul>
